@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using MyWebAPI.Interfaces;
@@ -15,7 +16,8 @@ namespace MyWebAPI.DAO
 
             Connection conn = new Connection();
             conn.criaConexao();
-            cliente.Cod = (conn.executaSQL("SELECT TOP 1 CdCliente FROM CLIENTE")).GetString(0);
+            IDataReader reader = conn.executaSQL("SELECT TOP 1 CdCliente FROM CLIENTE");
+            cliente.Cod = (reader.GetString(reader.GetOrdinal("CdCliente"))).Trim();
             cliente.Razao = "Richard Teste";
 
             return cliente;

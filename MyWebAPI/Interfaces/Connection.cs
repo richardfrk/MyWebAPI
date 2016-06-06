@@ -54,8 +54,9 @@ namespace MyWebAPI.Interfaces
             //command.Connection = connection;
             //command.CommandText = sql;
             IDataReader reader = command.ExecuteReader();
-
-            System.Diagnostics.Debug.WriteLine(reader.GetOrdinal("CdCliente"));
+            reader.Read();
+            //System.Diagnostics.Debug.WriteLine(reader.GetOrdinal("CdCliente"));
+            //System.Diagnostics.Debug.WriteLine(reader.GetString(0));
 
             return reader;
         }
