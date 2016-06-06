@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MyWebAPI.Interfaces;
+using MyWebAPI.Models;
 
 namespace MyWebAPI.DAO
 {
