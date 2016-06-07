@@ -15,10 +15,17 @@ namespace MyWebAPI.DAO
             Cliente cliente = new Cliente();
 
             Connection conn = new Connection();
+
             conn.criaConexao();
-            IDataReader reader = conn.executaSQL("SELECT TOP 1 CdCliente FROM CLIENTE");
+
+            IDataReader reader = conn.executaSQL("SELECT TOP 1 cliente.cdcliente, empresa.razao " +
+                                                 "FROM cliente INNER JOIN empresa " +
+                                                 "ON cliente.empresaid = empresa.empresaid");
+
             cliente.Cod = (reader.GetString(reader.GetOrdinal("CdCliente"))).Trim();
-            cliente.Razao = "Richard Teste";
+            cliente.Razao = (reader.GetString(reader.GetOrdinal("Razao"))).Trim();
+
+            conn.finalizaConexao();
 
             return cliente;
         }
